@@ -10,7 +10,7 @@
     http://www.springframework.org/schema/context/spring-context-4.2.xsd">
 
     <description>rabbitmq 连接服务配置</description>
-   	<!-- <context:property-placeholder location="/WEB-INF/config/mq.properties" /> -->
+   	<!-- <context:property-placeholder location="/WEB-INF/classes/config/mq.properties" /> -->
     <!-- 连接配置 -->
     <rabbit:connection-factory 
         id="connectionFactory" 

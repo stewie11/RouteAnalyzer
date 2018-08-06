@@ -5,22 +5,22 @@
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
 		<param-value>
-			/WEB-INF/applicationContext.xml,
-			/WEB-INF/rabbitmqContext.xml,
-			/WEB-INF/redisContext.xml
+			/WEB-INF/classes/applicationContext.xml,
+			/WEB-INF/classes/rabbitmqContext.xml,
+			/WEB-INF/classes/redisContext.xml
 		</param-value>
 	</context-param>
-	
+
 	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
-	
+
 	<servlet>
 		<servlet-name>springmvc</servlet-name>
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
 		<init-param>
 			<param-name>contextConfigLocation</param-name>
-			<param-value>/WEB-INF/springmvc-servlet.xml</param-value>
+			<param-value>/WEB-INF/classes/springmvc-servlet.xml</param-value>
 		</init-param>
 		<load-on-startup>1</load-on-startup>
 	</servlet>

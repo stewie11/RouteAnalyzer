@@ -3,6 +3,7 @@
 	<groupId>org.analyzer</groupId>
 	<artifactId>route-client</artifactId>
 	<version>0.0.1</version>
+	<packaging>war</packaging>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
@@ -64,9 +65,9 @@
 			<groupId>org.analyzer</groupId>
 			<artifactId>route-Common</artifactId>
 			<version>0.0.1</version>
-			<scope>system</scope>   
-			<!-- <systemPath>C:\Users\塑料袋\.m2\repository\org\analyzer\route-Common\0.0.1\route-Common-0.0.1.jar</systemPath> -->
-			<systemPath>C:\Users\Administrator\.m2\repository\org\analyzer\route-Common\0.0.1\route-Common-0.0.1.jar</systemPath>
+			<!--<scope>system</scope>-->
+			<!--<systemPath>C:/Users/HWhat/.m2/repository/org/analyzer/route-Common/0.0.1/route-Common-0.0.1.jar</systemPath>-->
+			<!--&lt;!&ndash;<systemPath>C:\Users\Administrator\.m2\repository\org\analyzer\route-Common\0.0.1\route-Common-0.0.1.jar</systemPath>&ndash;&gt;-->
 		</dependency>
 		<!-- https://mvnrepository.com/artifact/com.rabbitmq/amqp-client -->
 		<dependency>
@@ -121,8 +122,8 @@
 			<artifactId>spring-web</artifactId>
 			<version>4.3.10.RELEASE</version>
 		</dependency>
-		
-		
+
+
 		<!-- https://mvnrepository.com/artifact/org.springframework.data/spring-data-commons -->
 <!-- 		<dependency>
 			<groupId>org.springframework.data</groupId>
@@ -141,24 +142,41 @@
 			<version>1.1.0</version>
 		</dependency>
 	</dependencies>
-	
-  
-  
+
+
+
 	<build>
 		<sourceDirectory>src</sourceDirectory>
 		<resources>
 			<resource>
-			<directory>WebContent/frontend</directory>
-			<excludes>
-				<exclude>**/*.java</exclude>
-			</excludes>
-			</resource>
-			<resource>
-				<directory>WebContent/WEB-INF</directory>
+				<directory>${basedir}/WebContent/WEB-INF</directory>
+				<includes>
+					<include>*.xml</include>
+				</includes>
 				<excludes>
-					<exclude>**/*.java</exclude>
+					<exclude>web.xml</exclude>
 				</excludes>
 			</resource>
+			<resource>
+				<targetPath>config/</targetPath>
+				<directory>${basedir}/WebContent/WEB-INF/config/</directory>
+				<includes>
+					<include>*.properties</include>
+				</includes>
+				<excludes>
+					<exclude>**/*.java</exclude>
+					<exclude>*.xml</exclude>
+				</excludes>
+			</resource>
+
+		<!--	<resource>
+				<targetPath>pages/</targetPath>
+				<directory>${basedir}/WebContent/frontend/</directory>
+				<includes>
+					<include>*.jsp</include>
+					<include>*.js</include>
+				</includes>
+			</resource>-->
 		</resources>
 		<plugins>
 			<plugin>
@@ -169,6 +187,16 @@
 					<target>1.8</target>
 				</configuration>
 			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-war-plugin</artifactId>
+				<version>3.2.0</version>
+				<configuration>
+					<webXml>WebContent/WEB-INF/web.xml</webXml>
+					<warSourceDirectory>WebContent/frontend</warSourceDirectory>
+				</configuration>
+			</plugin>
+
 		</plugins>
 	</build>
 </project>
